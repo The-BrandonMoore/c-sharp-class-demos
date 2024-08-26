@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo01StringsInts", "Demo01StringsInts\Demo01StringsInts.csproj", "{C601AEF5-A8CD-44D5-8BC3-684FE430514B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C601AEF5-A8CD-44D5-8BC3-684FE430514B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C601AEF5-A8CD-44D5-8BC3-684FE430514B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C601AEF5-A8CD-44D5-8BC3-684FE430514B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C601AEF5-A8CD-44D5-8BC3-684FE430514B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3D4DC033-23B4-41EC-B507-12A45197E11C}
+	EndGlobalSection
+EndGlobal
