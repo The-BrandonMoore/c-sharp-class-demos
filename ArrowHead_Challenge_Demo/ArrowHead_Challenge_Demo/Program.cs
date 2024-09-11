@@ -20,7 +20,7 @@
 
             if (numberOfLines % 2 == 0)   //checks for even number. If numberOfLines is even, adds 1.
             {
-                numberOfLines = numberOfLines + 1;
+                numberOfLines++;
             }
             for (int i = 0; i < numberOfLines; i++)  //prints one line for each cycle of "numberOfLines".
             {
