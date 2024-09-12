@@ -1,4 +1,6 @@
-﻿namespace Array_Challenges_Class_Demos_4thru7
+﻿using System.Text.RegularExpressions;
+
+namespace Array_Challenges_Class_Demos_4thru7
 {
     internal class Program
     {
@@ -18,7 +20,17 @@
             //ReplaceVowelsWithUnderscores();
 
             //challenge 7
-            StringBits();
+            //StringBits();
+
+            //challenge 9
+
+            string newString = StringSplosion("Code");
+            Console.WriteLine($"New String: {newString}");
+
+
+
+            //int result = StringMatch("xxcaazz", "xxbaaz");
+            //Console.WriteLine($"result: {result}");
 
 
 
@@ -86,6 +98,13 @@
             }
             Console.WriteLine(userString);
         }
+        private static String ReplaceVowelsWithUnderscoresRegex(String sentence)
+        {
+            sentence = Regex.Replace(sentence, "[aeiouyAEIOUY]", "_");
+            return sentence;
+        }
+
+
         static public void StringBits()
         {
             Console.Write("Please Enter a Sentence:  ");
@@ -102,6 +121,36 @@
             }
             Console.WriteLine(userString);
         }
+        private static String StringBitsRegex(String sentence)
+        {
+            sentence = Regex.Replace(sentence, "(?<!^)[aeiouy](?!$)", "");//as is, will replace vowels with a blank space.
+            return sentence;
+        }
+
+
+        static public int StringMatch(string a, string b)
+        {
+            int result = string.Compare(a, b);
+            return result;
+            Console.WriteLine(result);
+        }
+
+
+        static public string StringSplosion(string sentence) {
+            string newSentence = "";
+            for (int i = 0; i <= sentence.Length; i++)
+            {
+                //newSentence = newSentence + newSentence + sentence[i];
+                newSentence += sentence.Substring(0, i);
+            }
+            return newSentence;
+        
+        }
+
+
+
+
+
 
     }
 }
