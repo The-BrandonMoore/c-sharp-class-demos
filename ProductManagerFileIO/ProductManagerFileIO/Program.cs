@@ -59,7 +59,7 @@ namespace ProductManagerFileIO
             }
         }
 
-        static void GetProduct()
+        public static void GetProduct()
         {
             Console.WriteLine("\nGet Product By Code:");
             //Console.WriteLine("Method Not Yet Implemented");
@@ -90,13 +90,14 @@ namespace ProductManagerFileIO
                 }
                 if (checkerString == "n")
                 {
+                    Console.WriteLine("Product not found.");
                     Console.WriteLine("Please Enter a Valid Product Code: ");
                     getNewProductCode = false;
                 }
             }
         }
 
-        static void AddProduct()
+        public static void AddProduct()
         {
             bool goBackLoop = false;
             while (!goBackLoop)
@@ -118,7 +119,7 @@ namespace ProductManagerFileIO
                 Product newProduct = new(newProductCode, newProductDescription, newProductPrice);
                 // add product to list
                 products.Add(newProduct);
-                Console.WriteLine($"\n{newProduct.Code} Successfully Added");
+                Console.WriteLine($"\n{newProduct.Description} Successfully Added");
                 // SAVE PRODUCT FILE
                 SaveProductFile();
                 break;
@@ -126,7 +127,7 @@ namespace ProductManagerFileIO
         }
 
 
-        static void DeleteProduct()
+        public static void DeleteProduct()
         {
             Console.WriteLine("\nDelete a Product By Code:");
             //Console.WriteLine("Method Not Yet Implemented");
@@ -147,15 +148,16 @@ namespace ProductManagerFileIO
                     if (p.Code == deleteProductCode)
                     {
                         // display product
-                        Console.WriteLine($"\n{p.Code} Successfully Deleted");
                         getProductCode = false;
-                        checkerString = "y";
                         products.Remove(p);
+                        checkerString = "y";
+                        Console.WriteLine($"\n{p.Description} Successfully Deleted");
                         break;
                     }
                 }
                 if (checkerString == "n")
                 {
+                    Console.WriteLine("Product not found.");
                     Console.WriteLine("Please Enter a Valid Product Code");
                     getProductCode = true;
                 }
@@ -171,7 +173,7 @@ namespace ProductManagerFileIO
             Console.WriteLine("get  - get a product by code");
             Console.WriteLine("del  - delete a product");
             Console.WriteLine("menu - display menu");
-            Console.WriteLine("back - enter back to return to the main menu");
+            Console.WriteLine("back - return to the main menu from above options");
             Console.WriteLine("exit - exit app");
         }
 
@@ -189,7 +191,7 @@ namespace ProductManagerFileIO
             return textSave;
         }
         // LOAD PRODUCTS FROM FILE
-        public static StreamReader GetProductFile()
+        public static void GetProductFile()
         {
             using StreamReader textGet = new(new FileStream(productPath, FileMode.OpenOrCreate, FileAccess.Read));
             while (textGet.Peek() != -1)
@@ -206,7 +208,7 @@ namespace ProductManagerFileIO
                 }
             }
             textGet.Close();
-            return textGet;
+
         }
     }
 }
