@@ -13,7 +13,7 @@ namespace ProductManagerFileIO
 
             // LOAD PRODUCTS FROM FILE - into products list
 
-            GetProductFile();
+            LoadProductFile();
 
             DisplayMenu();
 
@@ -63,7 +63,7 @@ namespace ProductManagerFileIO
         {
             Console.WriteLine("\nGet Product By Code:");
             //Console.WriteLine("Method Not Yet Implemented");
-            
+
             // find product in list, by code
             bool getNewProductCode = false;
             while (getNewProductCode != true)
@@ -73,7 +73,7 @@ namespace ProductManagerFileIO
                 Console.Write("Enter Product Code:  ");
                 string userEnteredProductCode = Console.ReadLine().ToUpper();
                 if (userEnteredProductCode == "BACK")
-                { 
+                {
                     getNewProductCode = true;
                     break;
                 }
@@ -90,7 +90,7 @@ namespace ProductManagerFileIO
                 }
                 if (checkerString == "n")
                 {
-                    Console.WriteLine("Product not found.");
+                    Console.WriteLine($"Product Code {userEnteredProductCode} not found.");
                     Console.WriteLine("Please Enter a Valid Product Code: ");
                     getNewProductCode = false;
                 }
@@ -105,15 +105,16 @@ namespace ProductManagerFileIO
                 Console.WriteLine("\nAdd a New Product:");
                 //Console.WriteLine("Method Not Yet Implemented");
                 // prompt user for code, desc, price
-                Console.Write("Please Enter the New Product Code: ");
+                Console.Write("Please Enter the New Product Code:         ");
                 string newProductCode = Console.ReadLine().ToUpper();
-                if (newProductCode == "BACK") {
+                if (newProductCode == "BACK")
+                {
                     goBackLoop = false;
                     break;
                 }
-                Console.Write("Please Enter the New Product Description: ");
+                Console.Write("Please Enter the New Product Description:  ");
                 string newProductDescription = Console.ReadLine();
-                Console.Write("Please Enter the New Product Price: ");
+                Console.Write("Please Enter the New Product Price:        ");
                 decimal newProductPrice = decimal.Parse(Console.ReadLine());
                 // create new instance of product
                 Product newProduct = new(newProductCode, newProductDescription, newProductPrice);
@@ -138,7 +139,8 @@ namespace ProductManagerFileIO
                 string checkerString = "n";
                 Console.Write("Enter the Product Code for the Product to be deleted:  ");
                 string deleteProductCode = Console.ReadLine().ToUpper();
-                if (deleteProductCode == "BACK") { 
+                if (deleteProductCode == "BACK")
+                {
                     getProductCode = false;
                     break;
                 }
@@ -157,7 +159,7 @@ namespace ProductManagerFileIO
                 }
                 if (checkerString == "n")
                 {
-                    Console.WriteLine("Product not found.");
+                    Console.WriteLine($"Product Code {deleteProductCode} not found.");
                     Console.WriteLine("Please Enter a Valid Product Code");
                     getProductCode = true;
                 }
@@ -179,7 +181,7 @@ namespace ProductManagerFileIO
 
         // NEW METHODS:
         // SAVE PRODUCT FILE
-        private static StreamWriter SaveProductFile()
+        private static void SaveProductFile()
         {
             using StreamWriter textSave = new(new FileStream(productPath, FileMode.Create, FileAccess.Write));
             foreach (Product p in products)
@@ -187,16 +189,16 @@ namespace ProductManagerFileIO
                 textSave.Write(p.Code + "|");
                 textSave.Write(p.Description + "|");
                 textSave.WriteLine(p.Price);
+                //could also do textSave.WriteLine($"{p.Code}|{p.Description}|{p.Price}");
             }
-            return textSave;
         }
         // LOAD PRODUCTS FROM FILE
-        public static void GetProductFile()
+        public static void LoadProductFile()
         {
-            using StreamReader textGet = new(new FileStream(productPath, FileMode.OpenOrCreate, FileAccess.Read));
-            while (textGet.Peek() != -1)
+            using StreamReader textLoad = new(new FileStream(productPath, FileMode.OpenOrCreate, FileAccess.Read));
+            while (textLoad.Peek() != -1)
             {
-                string row = textGet.ReadLine() ?? "";
+                string row = textLoad.ReadLine() ?? "";
                 string[] fields = row.Split('|');
                 if (fields.Length == 3)
                 {
@@ -207,8 +209,6 @@ namespace ProductManagerFileIO
                     products.Add(p);
                 }
             }
-            textGet.Close();
-
         }
     }
 }
