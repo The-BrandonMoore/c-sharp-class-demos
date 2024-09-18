@@ -207,7 +207,7 @@ namespace CH20EFBmdbConsole
             Console.WriteLine("\nAdd a Movie: ");
             Console.WriteLine("--------------");
             string title = PromptInput("Movie Title: ");
-            int year = int.Parse(PromptInput("Release Year: "));
+            short year = short.Parse(PromptInput("Release Year: "));
             string rating = PromptInput("Age Rating: ");
             string director = PromptInput("Director: ");
             Movie m = new Movie(title, year, rating, director);

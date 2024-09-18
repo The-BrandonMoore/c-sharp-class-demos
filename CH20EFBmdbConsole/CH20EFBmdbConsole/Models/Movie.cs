@@ -29,10 +29,10 @@ public partial class Movie
 
     [InverseProperty("Movie")]
     public virtual ICollection<Credit> Credits { get; set; } = new List<Credit>();
-    public Movie (string title, int year, string rating, string director)
+    public Movie (string title, short year, string rating, string director)
     {
         Title = title;
-        Year = (short)year;
+        Year = year;
         Rating = rating;
         Director = director;
     }
